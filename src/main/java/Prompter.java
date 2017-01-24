@@ -32,12 +32,13 @@ public class Prompter {
       System.out.printf("Maximum number of %s in the jar: ", nameOfItem);
       try {
         max = input.nextInt();
+        jar = new Jar(nameOfItem, max);
         isPositive = true;
       } catch (IllegalArgumentException iae) {
         System.out.println("Please try again." + iae.getMessage());
       }
     } while (!isPositive);
-    jar = new Jar(nameOfItem, max);
+
     jar.setChallenger(name);
     jar.fill();
   }
