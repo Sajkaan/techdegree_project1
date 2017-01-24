@@ -99,7 +99,7 @@ public class Prompter {
           "The guess should be a positive number and bigger than 0.");
     } else if (guess > jar.getMaxNumberOfItemsInTheJar()) {
       throw new IllegalArgumentException(
-          "Your guess must be equal or less than " + jar.getMaxNumberOfItemsInTheJar());
+          "Your guess must be equal or less than " + jar.getMaxNumberOfItemsInTheJar() + " .");
     } else {
       numberOfGuesses++;
       if (guess == jar.getRandomNumberOfItemsInTheJar()) {
