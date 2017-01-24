@@ -2,8 +2,7 @@ public class Game {
 
   public static void main(String[] args) {
 
-    Jar jar = new Jar();
-    Prompter prompter = new Prompter(jar);
+    Prompter prompter = new Prompter();
     prompter.jarSetup();
     prompter.startTheGame();
   }

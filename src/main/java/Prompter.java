@@ -3,11 +3,14 @@ import java.util.Scanner;
 
 public class Prompter {
 
-  private Jar jar;
+  private String name;
+  private String nameOfItem;
+  private int max;
   Scanner input = new Scanner(System.in);
+  private Jar jar;
 
-  public Prompter(Jar jar) {
-    this.jar = jar;
+  public Prompter() {
+
   }
 
   public void jarSetup() {
@@ -18,27 +21,28 @@ public class Prompter {
 
     // Asks for your username input
     System.out.print("Enter your username: ");
-    jar.setChallenger(input.nextLine());
+    name = input.nextLine();
 
-    // Asks for your item name input
+    // Asks for your item nameOfItem input
     System.out.print("Name of items in the jar: ");
-    jar.setItem(input.nextLine());
+    nameOfItem = input.nextLine();
 
     // Asks for the number of your items, if the number is not valid it repeats
     do {
-      System.out.printf("Maximum number of %s in the jar: ", jar.getItem());
+      System.out.printf("Maximum number of %s in the jar: ", nameOfItem);
       try {
-        jar.setMaxNumberOfItemsInTheJar(input.nextInt());
+        max = input.nextInt();
         isPositive = true;
-      } catch(IllegalArgumentException iae){
+      } catch (IllegalArgumentException iae) {
         System.out.println("Please try again." + iae.getMessage());
       }
-    } while(!isPositive);
-
+    } while (!isPositive);
+    jar = new Jar(nameOfItem, max);
+    jar.setChallenger(name);
     jar.fill();
   }
 
-  public void startTheGame(){
+  public void startTheGame() {
     //Creating a variable to check for the searched number,input,
     boolean isGuessed = false;
     boolean isPositive = false;
@@ -46,7 +50,8 @@ public class Prompter {
     // Explains the user the rules and starts with the guessing
     System.out.println("\n\n" + jar.getChallenger());
     System.out.println("======================");
-    System.out.printf("Your goal is to guess how many %s are in the jar. Your guess should be between 1 and %d\n",
+    System.out.printf(
+        "Your goal is to guess how many %s are in the jar. Your guess should be between 1 and %d\n",
         jar.getItem(),
         jar.getMaxNumberOfItemsInTheJar());
     promptEnterKey();
@@ -66,7 +71,7 @@ public class Prompter {
   }
 
 
-  public static void promptEnterKey(){
+  public static void promptEnterKey() {
     System.out.println("Ready? (press \"ENTER\" to star guessing)");
     try {
       int read = System.in.read(new byte[2]);

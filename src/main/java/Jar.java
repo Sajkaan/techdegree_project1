@@ -8,24 +8,17 @@ public class Jar {
   private int randomNumberOfItemsInTheJar;
   private int numberOfGuesses = 0;
 
-  public Jar() {
-  }
-
-  public void setChallenger(String challenger) {
-    this.challenger = challenger;
-  }
-
-  public void setItem(String item) {
+  public Jar(String item, int maxNumberOfItemsInTheJar) {
     this.item = item;
-  }
-
-  // Sets the maximum number and disables a negative number or 0
-  public void setMaxNumberOfItemsInTheJar(int maxNumberOfItemsInTheJar) {
     if (maxNumberOfItemsInTheJar <= 0) {
       throw new IllegalArgumentException("The number can't be negative or 0.");
     } else {
       this.maxNumberOfItemsInTheJar = maxNumberOfItemsInTheJar;
     }
+  }
+
+  public void setChallenger(String challenger) {
+    this.challenger = challenger;
   }
 
   public String getChallenger() {
@@ -57,11 +50,12 @@ public class Jar {
   // Checks if the guess is right, throws Exception if the input is bellow 0 or higher than the maximum
   public boolean check(int guess) {
     if (guess <= 0) {
-       throw new IllegalArgumentException("The guess should be a positive number and bigger than 0.");
+      throw new IllegalArgumentException(
+          "The guess should be a positive number and bigger than 0.");
     } else if (guess > maxNumberOfItemsInTheJar) {
-      throw new IllegalArgumentException("Your guess must be less than " + maxNumberOfItemsInTheJar);
-    }
-    else {
+      throw new IllegalArgumentException(
+          "Your guess must be less than " + maxNumberOfItemsInTheJar);
+    } else {
       numberOfGuesses++;
       if (guess == randomNumberOfItemsInTheJar) {
         return true;
