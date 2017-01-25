@@ -23,7 +23,7 @@ public class Prompter {
     max = input.nextInt();
     jar = new Jar(nameOfItem, max);
     jar.fill();
-    System.out.printf("How many %s are in the jar? Pick a number between 1 and %d. \n",
+    System.out.printf("How many %s are in the jar? Pick a number between 1 and %d.\n",
         jar.getItem(),
         jar.getMaxNumberOfItemsInTheJar());
   }
@@ -43,7 +43,7 @@ public class Prompter {
       }
     } while (!isGuessed);
 
-    System.out.printf("You got it in %d attempt(s).", numberOfGuesses);
+    System.out.printf("You got it in %d attempts.", numberOfGuesses);
   }
 
   // Checks if the guess is higher or lower than the searched number
@@ -58,7 +58,7 @@ public class Prompter {
 
   // Checks if the guess is right, throws Exception if the input higher than the maximum
   public boolean check(int guess) {
-    if (guess > jar.getMaxNumberOfItemsInTheJar()) {
+    if (guess > jar.getMaxNumberOfItemsInTheJar() ) {
       throw new IllegalArgumentException(
           "Your guess must be less than " + jar.getMaxNumberOfItemsInTheJar() + " .");
     } else {
